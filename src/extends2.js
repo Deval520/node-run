@@ -139,3 +139,7 @@ console.log({}.toString())
 console.log(Object.prototype.toString.call(function(){}));
 // console.log(Function.prototype.toString.call({}))
 console.log(function(){return 1}.toString());
+console.log(Function.prototype)
+console.log(Student.prototype)
+console.log(Function)
+console.log(Object.prototype == new Object({}))
