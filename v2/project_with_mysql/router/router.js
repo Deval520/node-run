@@ -1,7 +1,8 @@
 const
   url = require("url"),
   utils = require("../utils/utils"),
-  loadStatic = require("../controller/loadStaticFile")
+  loadStatic = require("../controller/loadStaticFile"),
+  mysqlRouter = require("../mysql/post")
 
 /**
  * router
@@ -24,7 +25,8 @@ exports.Router = function(req, res){
         //GET request
       break;
     case "/POST" :
-        //POST request post(req, res)
+      //请求 返回 Content-Type皆为application/json
+      mysqlRouter.mySqlRouter(req, res)
       break;
     default:
         loadStatic.LoadFile(req, res, pathname)

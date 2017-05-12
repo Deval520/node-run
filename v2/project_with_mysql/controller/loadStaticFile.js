@@ -18,7 +18,7 @@ function readStatic(req, res, pathname, type){
   dataStr = ""
   fs.stat(pathname, function(err, stats){
     if(err){
-      res.writeHead(404)
+      res.writeHead(404, {"Content-Type": "application/json"})
       res.write("404 NOT FOUND")
       res.end()
       return utils.HandleError(err, type)
@@ -27,13 +27,13 @@ function readStatic(req, res, pathname, type){
     let readStream = fs.createReadStream(pathname)
     readStream.on("data", data)
     readStream.on("error", function(err){
-      res.writeHead(404)
+      res.writeHead(404, {"Content-Type": "application/json"})
       res.write("404 NOT FOUND")
       res.end()
       return utils.HandleError(err, type)
     })
     readStream.on("end", function(){
-      res.writeHead(200)
+      res.writeHead(200, {"Content-Type": "text/html"})
       res.write(dataStr.toString())
       res.end()
     })
